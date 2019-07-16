@@ -1,3 +1,28 @@
+show dbs
+
+use mycustomers
+
+db.createUser({
+  user: 'fazt',
+  pwd: '123',
+  roles: ['readWrite', 'dbAdmin']
+});
+
+db.createCollection('customers')
+
+show collections
+
+db.customers.insert(
+  {
+    firstName: 'Isaac',
+    lastName: 'Asimov'
+  }
+)
+
+db.customers.find()
+  .pretty()
+
+
 db.MisClientes.insert(
   [
     {Nombre: 'Joe', Apellido: 'MacMillan'},
@@ -47,3 +72,48 @@ db.MisClientes.update(
              "Caducidad":"2013-10-21"
          }
      })
+//Ejemplo de la base de datos Llanrremaz y tiene varias colecciones las cuales tienen documentos que es cada registro
+     db.Clientes.help() //podremos ver los comandos aplicables a una colección en concreto.
+     db.Clientes.count(); //  La sintaxis sobre una colección es la siguiente
+     db.Clientes.find().count(); //Esto devolvería el número total de documentos que componen una colección. Que al fin y al cabo podría escribirse también como:
+     db.Clientes.find({Nombre:/^M/}).count(); // nombres que comiencen con M
+
+     db.ciudades.find({ciudad:/^M/}).count(); //Si consultamos ciudades que empiecen por M y queremos saber cuantas existen, podemos utilizar el método MongoDB count.
+
+     db.customers.remove({firstName: "Isaac"})
+db.customers.remove({firstName: "Isaac"}, {justOne: true})
+
+db.Clientes.find({Nombre: "Manuel"}).pretty();
+db.customers.find({$or: [{firstName: "Elena"}, {firstName: "Isaac"}]})
+db.customers.fid({gender: "male"})
+
+db.customers.find({age: {$lt: 40}})
+db.customers.find({age: {$gt: 40}})
+db.customers.find({age: {$gt: 30, $lt: 90}});
+
+db.customers.find({"address.city": "Boston"})
+
+db.customers.find({name: {$regex: 'ston'}});
+
+// sorting
+db.customers.find().sort({lastName: 1});
+db.customers.find().sort({lastName: -1});
+db.customers.find().count()
+db.customers.find({gender: "male"}).count()
+db.customers.find().limit(4)
+db.customers.find().limit(4).sort({lastName: -1})
+
+db.customers.find().forEach(function(doc) {
+  print("Customer Name" + doc.firstName);
+});
+
+// para agregar mas campos al documento sin poner todo
+
+db.MisClientes.update(
+ {_id: ObjectId("5d2e087a1efb3d8c4a06fa73")},
+{
+ $set: {Edad: 20}
+ })
+
+ //cuando se actualiza pero no esta creado 
+ db.Clientes.update({Nombre: 'Aaron'}, {Nombre: 'Aaron', Apellido: 'Lopez'},{upsert:true})
