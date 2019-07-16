@@ -1,0 +1,49 @@
+db.MisClientes.insert(
+  [
+    {Nombre: 'Joe', Apellido: 'MacMillan'},
+    {Nombre: 'Elena', Apellido: 'Soraya'},
+    {Nombre: 'Isaac', Apellido: 'delahaye'}
+  ]
+)
+
+db.createCollection('Usuarios')
+
+> db.Productos.insert([
+     {Codigo: 'A100', Nombre: 'Flixiones', Stock: 20},
+     {Codigo: 'A101', Nombre: 'Llantas', Stock: 50}])
+
+
+     db.MisClientes.update(
+  {Nombre: 'Joe'}, 
+  {
+    Nombre: 'Joe',
+    Apellido: 'MacMillan',
+    Genero: 'Hombre'
+  }
+)
+
+
+db.MisClientes.update(
+     {Nombre: 'Elena'},
+  {
+     Nombre: 'Maria',
+     Apellido: 'Garcia',
+    Genero: 'Mujer'
+     }
+     )
+
+
+     db.Clientes.insert({
+     "Nombre": "Manuel",
+     "Apellidos": "Pérez",
+     "Fecha_nacimiento": "1982-03-03",
+     "Altura": 1.80,
+     "Activo": true,
+     "Intereses":["fútbol","tenis"],
+     "Tarjeta_credito": null,
+     "DNI": 
+         {
+             "Numero":"465464646J",
+             "Caducidad":"2013-10-21"
+         }
+     })
