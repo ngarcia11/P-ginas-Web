@@ -117,3 +117,8 @@ db.MisClientes.update(
 
  //cuando se actualiza pero no esta creado 
  db.Clientes.update({Nombre: 'Aaron'}, {Nombre: 'Aaron', Apellido: 'Lopez'},{upsert:true})
+// Where not
+  db.Clientes.find({Nombre: {$ne: "Norlan"}}).pretty()
+//Eliminar Base de Datos
+db.dropDatabase()
+
